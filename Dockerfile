@@ -17,7 +17,7 @@ WORKDIR /git-server
 
 RUN mkdir root repos \
   && ln -s $GIT_SERV_PATH/repos /home/git/repositories \
-  && git clone git://eagain.net/gitosis.git \
+  && git clone https://github.com/res0nat0r/gitosis.git \
   && cd gitosis \
   && python setup.py install
 
