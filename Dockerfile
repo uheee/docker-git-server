@@ -16,6 +16,7 @@ RUN apk add --no-cache openssh git git-fast-import python2 py2-setuptools \
 WORKDIR /git-server
 
 RUN mkdir root repos \
+  && chown git repos \
   && ln -s $GIT_SERV_PATH/repos /home/git/repositories \
   && git clone https://github.com/res0nat0r/gitosis.git \
   && cd gitosis \
