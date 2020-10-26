@@ -10,7 +10,8 @@ RUN apk add --no-cache openssh git git-fast-import python2 py2-setuptools \
   && ssh-keygen -A \
   && adduser -D git \
   && mkdir $GIT_SERV_PATH \
-  && sed -i 's/^#PasswordAuthentication yes$/PasswordAuthentication no\nRSAAuthentication yes/g' /etc/ssh/sshd_config
+  && sed -i 's/^#PubkeyAuthentication yes$/RSAAuthentication yes\nPubkeyAuthentication yes/g' /etc/ssh/sshd_config \
+  && sed -i 's/^#PasswordAuthentication yes$/PasswordAuthentication no/g' /etc/ssh/sshd_config
 
 WORKDIR /git-server
 
