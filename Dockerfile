@@ -10,13 +10,12 @@ RUN apk add --no-cache openssh git git-fast-import python2 py2-setuptools \
   && ssh-keygen -A \
   && adduser -D git \
   && mkdir $GIT_SERV_PATH \
-  && su git -c "mkdir /home/git/.ssh" \
   && sed -i 's/^#PasswordAuthentication yes$/PasswordAuthentication no/g' /etc/ssh/sshd_config
 
 WORKDIR /git-server
 
-RUN mkdir root repos \
-  && chown git repos \
+RUN mkdir root repos /home/git/.ssh \
+  && chown git repos /home/git/.ssh \
   && ln -s $GIT_SERV_PATH/repos /home/git/repositories \
   && git clone https://github.com/res0nat0r/gitosis.git \
   && cd gitosis \
